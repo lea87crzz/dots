@@ -3,6 +3,7 @@ package com.rskd.dots.objects;
 public class Relacion {
 	
 	public static final Integer PADRE = 1;
+	public static final Integer PAREJA = 2;
 	private Individuo individuo1;
 	private Individuo Individuo2;
 	private Integer tipoRelacion;

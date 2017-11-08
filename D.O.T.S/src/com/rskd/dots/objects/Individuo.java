@@ -36,14 +36,15 @@ public class Individuo implements IObjetoVivo, IPosicionable {
 		
 	}
 	
-	public Individuo(int red,int green,int blue){
+	public Individuo(int red,int green,int blue,Universo u){
 		this();
 		if(red<0 || red>255) throw new RuntimeException("Valor incorrecto");
 		if(green<0 || green>255) throw new RuntimeException("Valor incorrecto");
 		if(blue<0 || blue>255) throw new RuntimeException("Valor incorrecto");
 		this.r=red;
 		this.b=blue;
-		this.g=green;		
+		this.g=green;
+		atributos.put(IndividuoConstants.ATTR_EDAD_INICIO_REPRODUCCION,IndividuoConstants.EDAD_INICIO_REPRODUCCION+u.random(-100, 100));
 	}
 	
 	public Individuo() {
@@ -79,8 +80,12 @@ public class Individuo implements IObjetoVivo, IPosicionable {
 			}
 		
 			edad++;
+			if(edad==getAtributo(IndividuoConstants.ATTR_EDAD_INICIO_REPRODUCCION)){
+				u.evento(this, "esta en celo");
+				actividadActual=new FindMate();
+			}
 			if(actividadActual!=null){
-				actividadActual.realizarActividad(this);
+				actividadActual.realizarActividad(this,u);
 			}
 		}
 	}
@@ -103,6 +108,15 @@ public class Individuo implements IObjetoVivo, IPosicionable {
 	@Override
 	public Integer getY() {
 		return posY;
+	}
+
+	public IActividad getActividad() {
+		return actividadActual;
+	}
+
+	public void hacerNada() {
+		this.actividadActual=new HacerNada();
+		
 	}
 
 }

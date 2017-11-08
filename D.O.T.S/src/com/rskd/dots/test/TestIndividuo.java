@@ -10,6 +10,8 @@ public class TestIndividuo {
 		
 		Individuo iazul=u.crearIndividuo(0,0,255);
 		Individuo irojo=u.crearIndividuo(255,0,0);
+		Individuo iverde=u.crearIndividuo(0,255,0);
+		Individuo ivioleta=u.crearIndividuo(122,0,122);
 		
 		/*Individuo hijo=u.reproducir(iazul,irojo);
 		Individuo hijo2=u.reproducir(iazul, hijo);
@@ -21,7 +23,10 @@ public class TestIndividuo {
 		System.out.println(hijo2.getColor());
 		System.out.println(hijo3.getColor());*/
 		
-		while(iazul.estaVivo()){
+		/*while(iazul.estaVivo()){
+			u.vivir();
+		}*/
+		for(int i=0;i<10000;i++){
 			u.vivir();
 		}
 
